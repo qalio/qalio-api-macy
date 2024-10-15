@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package macy.v1;
+
+import "proto/v1/common/utils.proto";
+
+message Role {
+  string id = 1;
+  string name = 2;
+}
+
+message Permission {
+  string id = 1;
+  string name = 2;
+}
+
+message AssignRoleRequest {
+  string user_id = 1;
+  string role_id = 2;
+}
+
+message AssignRoleResponse {
+  bool success = 1;
+}
+
+message CheckPermissionRequest {
+  string user_id = 1;
+  string permission = 2;
+}
+
+message CheckPermissionResponse {
+  bool has_permission = 1;
+}
+
+service RoleService {
+  rpc AssignRole(AssignRoleRequest) returns (AssignRoleResponse);
+  rpc CheckPermission(CheckPermissionRequest) returns (CheckPermissionResponse);
+}
